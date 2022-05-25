@@ -1,3 +1,4 @@
+import 'package:fixitup_mobile/widgets/fix_list_card.dart';
 import 'package:fixitup_mobile/widgets/textfield.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +18,8 @@ class UserHomeScreen extends StatelessWidget {
             children: [
               Container(
                 padding: EdgeInsets.all(20),
-                child: AppTextField("Search Project", Icon(Icons.ac_unit),
+                child: AppTextField(
+                    "Search Project", Icon(Icons.search_rounded),
                     obscureText: false),
               ),
               Spacer(),
@@ -26,13 +28,20 @@ class UserHomeScreen extends StatelessWidget {
                 style: Theme.of(context).textTheme.headline3,
               ),
               Container(
+                padding: EdgeInsets.only(top: 20, bottom: 20),
                 height: MediaQuery.of(context).size.height * .82,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(15),
-                        topRight: Radius.circular(15))),
+                  color: Color.fromRGBO(236, 219, 186, 1),
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(15),
+                      topRight: Radius.circular(15)),
+                ),
+                child: ListView.builder(
+                    itemCount: 10,
+                    itemBuilder: (context, pos) {
+                      return FixListCard();
+                    }),
               )
             ],
           )
