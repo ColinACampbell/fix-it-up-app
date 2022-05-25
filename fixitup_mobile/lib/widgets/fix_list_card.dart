@@ -6,11 +6,27 @@ class FixListCard extends StatefulWidget {
 }
 
 class _FixListCardState extends State<FixListCard> {
+  Widget buildTextContainer(String text, double height) {
+    return Flexible(
+      child: Container(
+        margin: EdgeInsets.all(2),
+        height: height,
+        color: Colors.amber,
+        child: Text(
+          text,
+          overflow: TextOverflow.ellipsis,
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(left: 20, right: 20),
+      // Actual Card
       child: Card(
+        // Enable border radius
         child: Container(
           decoration: BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(10))),
@@ -32,10 +48,11 @@ class _FixListCardState extends State<FixListCard> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Phone needs to be fixed"),
-                          Text("By Colin Foo Master"),
-                          Text(
-                              "The phone screen is cracked and \nI can't see anything")
+                          buildTextContainer("Phone needs to be fixed", 20),
+                          buildTextContainer("By @colinfumaster", 20),
+                          buildTextContainer(
+                              "The phone screen is cracked and \nI can't see anything",
+                              100),
                         ],
                       ),
                     )
