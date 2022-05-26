@@ -4,7 +4,10 @@ class AppTextField extends StatelessWidget {
   String _hintText;
   Icon _prefixIcon;
   bool obscureText = false;
-  AppTextField(this._hintText, this._prefixIcon, {required this.obscureText});
+  TextEditingController? controller;
+
+  AppTextField(this._hintText, this._prefixIcon,
+      {required this.obscureText, this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +16,7 @@ class AppTextField extends StatelessWidget {
           color: Colors.white,
           borderRadius: BorderRadius.all(Radius.circular(20))),
       child: TextField(
+        controller: controller,
         obscureText: obscureText,
         decoration: InputDecoration(
           fillColor: Colors.red,

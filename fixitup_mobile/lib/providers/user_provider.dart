@@ -11,7 +11,7 @@ class UserProvider extends ChangeNotifier {
   signUpUser(String fullName, String userName, String email, String password,
       String location) {}
 
-  get appUser {
+  User get appUser {
     return _user;
   }
 }

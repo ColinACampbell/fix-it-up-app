@@ -1,6 +1,8 @@
+import 'package:fixitup_mobile/providers/user_provider.dart';
 import 'package:fixitup_mobile/services/user_service.dart';
 import 'package:fixitup_mobile/widgets/textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LoginCard extends StatelessWidget {
   @override
@@ -46,7 +48,8 @@ class LoginCard extends StatelessWidget {
           SizedBox(
             child: ElevatedButton(
               onPressed: () {
-                UserService.getTest();
+                //final userProvider =
+                //    Provider.of<UserProvider>(context, listen: false);
               },
               child: Text(
                 "LOGIN",

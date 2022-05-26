@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 
 class SignupCard extends StatelessWidget {
   final Function? onClickSignUp;
-  const SignupCard({@required this.onClickSignUp});
+  SignupCard({@required this.onClickSignUp});
+
+  final usernameController = new TextEditingController();
+  final emailController = new TextEditingController();
+  final passwordController = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +27,7 @@ class SignupCard extends StatelessWidget {
             "Username",
             Icon(Icons.account_circle_outlined),
             obscureText: false,
+            controller: usernameController,
           ),
           SizedBox(
             height: 10,
@@ -31,6 +36,7 @@ class SignupCard extends StatelessWidget {
             "Email",
             Icon(Icons.email_outlined),
             obscureText: false,
+            controller: emailController,
           ),
           SizedBox(
             height: 10,
@@ -39,6 +45,7 @@ class SignupCard extends StatelessWidget {
             "Password",
             Icon(Icons.lock_outline),
             obscureText: true,
+            controller: passwordController,
           ),
           SizedBox(
             height: 40,
@@ -46,7 +53,8 @@ class SignupCard extends StatelessWidget {
           SizedBox(
             child: ElevatedButton(
               onPressed: () {
-                this.onClickSignUp!();
+                //this.onClickSignUp!();
+                print(usernameController.text);
               },
               child: Text(
                 "SIGN UP",
