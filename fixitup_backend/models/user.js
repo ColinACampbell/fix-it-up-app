@@ -4,7 +4,7 @@ const mongooseConn = require('./index')
 const schema = new Schema({
     userName:String,
     fullName:String,
-    country:String,
+    location:String,
     email:String,
     password:String
 })

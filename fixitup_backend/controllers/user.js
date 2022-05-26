@@ -7,7 +7,7 @@ exports.testUserController = (req,res) => {
 }
 
 exports.signup = async (req, res) => {
-    const { email, name, phone, password } = req.body
+    const { email, fullName, password, userName, location} = req.body
 
     if (email == undefined || phone == undefined || password == undefined) {
         res.status(400).json({})
@@ -25,15 +25,17 @@ exports.signup = async (req, res) => {
             if (err) throw err
             let user = await UserModel.create({
                 email,
-                name,
-                phone,
+                fullName,
+                userName,
+                location,
                 password: hash
             })
+
             user.password = undefined
             user = JSON.parse(JSON.stringify(user))
             const token = await jwtUtil.createToken(user)
             //req.session.user = user
-            res.status(201).json({ user,token, paymentAccounts:[], bankRecipients:[]});
+            res.status(201).json({ user,token});
         })
     }
 }

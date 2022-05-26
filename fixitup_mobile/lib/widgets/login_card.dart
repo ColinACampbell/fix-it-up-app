@@ -1,3 +1,4 @@
+import 'package:fixitup_mobile/services/user_service.dart';
 import 'package:fixitup_mobile/widgets/textfield.dart';
 import 'package:flutter/material.dart';
 
@@ -44,7 +45,9 @@ class LoginCard extends StatelessWidget {
           ),
           SizedBox(
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                UserService.getTest();
+              },
               child: Text(
                 "LOGIN",
                 style: Theme.of(context).textTheme.caption,
