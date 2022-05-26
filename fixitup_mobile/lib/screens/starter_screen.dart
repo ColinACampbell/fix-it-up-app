@@ -1,7 +1,9 @@
+import 'package:fixitup_mobile/providers/user_provider.dart';
 import 'package:fixitup_mobile/widgets/login_card.dart';
 import 'package:fixitup_mobile/widgets/sigup_card.dart';
 import 'package:fixitup_mobile/widgets/user_setup_card.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class StarterScreen extends StatefulWidget {
   static const String routeName = "/login_screen";
@@ -14,6 +16,49 @@ class _StarterScreenState extends State<StarterScreen> {
   bool _loginState = true;
   bool _setUpState = false;
   Widget? signUpProgressWidget;
+
+  Widget starterScreenBody() {
+    return Center(
+      child: Container(
+        padding: EdgeInsets.all(10),
+        width: MediaQuery.of(context).size.width * .8,
+        height: MediaQuery.of(context).size.height * .8,
+        child: Card(
+          color: Colors.white,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  "FixItUp",
+                  style: TextStyle(fontSize: 51, fontFamily: "PasseroOne"),
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                _loginState ? LoginCard() : signUpProgressWidget!,
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      _loginState = !_loginState;
+                    });
+                  },
+                  child: Text(
+                    _loginState ? "Create An Account" : "Login Instead",
+                    style: TextStyle(
+                      color: Color.fromRGBO(200, 75, 49, 1),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,45 +85,9 @@ class _StarterScreenState extends State<StarterScreen> {
                     bottomLeft: Radius.elliptical(300, 100),
                     bottomRight: Radius.elliptical(300, 100))),
           ),
-          Center(
-            child: Container(
-              padding: EdgeInsets.all(10),
-              width: MediaQuery.of(context).size.width * .8,
-              height: MediaQuery.of(context).size.height * .8,
-              child: Card(
-                color: Colors.white,
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        "FixItUp",
-                        style:
-                            TextStyle(fontSize: 51, fontFamily: "PasseroOne"),
-                      ),
-                      SizedBox(
-                        height: 30,
-                      ),
-                      _loginState ? LoginCard() : signUpProgressWidget!,
-                      TextButton(
-                          onPressed: () {
-                            setState(() {
-                              _loginState = !_loginState;
-                            });
-                          },
-                          child: Text(
-                            _loginState ? "Create An Account" : "Login Instead",
-                            style: TextStyle(
-                              color: Color.fromRGBO(200, 75, 49, 1),
-                            ),
-                          ))
-                    ],
-                  ),
-                ),
-              ),
-            ),
+          ChangeNotifierProvider(
+            create: (_) => UserProvider(),
+            child: starterScreenBody(),
           )
         ],
       ),
